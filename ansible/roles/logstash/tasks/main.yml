@@ -29,6 +29,36 @@
   with_items: "{{ logstash_install_plugins }}"
   when: "item not in logstash_plugins_list.stdout"
 
+- name: Change file ownership and group of /etc/logstash
+  ansible.builtin.file:
+    path: /etc/logstash
+    owner: logstash
+    group: logstash
+    mode: 0775
+    recurse: yes
+
+- name: Change file ownership and group of /usr/share/logstash
+  ansible.builtin.file:
+    path: /usr/share/logstash
+    owner: logstash
+    group: logstash
+    mode: 0775
+    recurse: yes
+
+- name: Change file ownership and group of /var/log/logstash
+  ansible.builtin.file:
+    path: /var/log/logstash
+    owner: logstash
+    group: logstash
+    mode: 0775
+    recurse: yes
+
+- name: Add centos user to logstash group
+  ansible.builtin.user:
+    name: centos
+    groups: logstash
+    append: yes
+
 - name: Add logstash to path.
   copy:
     mode: 0755
