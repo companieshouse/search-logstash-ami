@@ -1,0 +1,8 @@
+---
+
+- hosts: search-logstash
+  become: true
+  roles:
+    - pip
+    - logstash
+    - ojdbc

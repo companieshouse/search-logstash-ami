@@ -1,0 +1,8 @@
+---
+
+- name: Get ojdbc jar driver
+  aws_s3:
+    bucket: "{{ resource_bucket_name }}"
+    object: "{{ resource_bucket_ojdbc_prefix }}/ojdbc8-{{ ojdbc8_version }}.jar"
+    dest: "/etc/logstash/ojdbc8.jar"
+    mode: get
